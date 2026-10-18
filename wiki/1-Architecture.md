@@ -1,19 +1,25 @@
-# 1. Architecture
+# Architecture & System Design
 
-1. Audit: scan CSS/JSX for RTL-unsafe patterns (left/right, float, hardcoded transforms on icons) and report file:line.
-2. Codemod: rewrite physical CSS properties to logical ones automatically.
-3. Helpers: React/Tailwind components + utilities that are RTL-correct by default.
-4. Test harness: render each screen in both directions and diff screenshots to catch regressions.
+This document details the system design, components, and communication topology of **RTL Arabic Web Layout Toolkit & Audit CLI**.
 
-## Proposed stack
-- JS/TS library + CLI
-- A CSS codemod to logical properties (margin-inline, inset-inline, text-align: start)
-- A runtime/static audit that flags hardcoded left/right and direction leaks
-- React + Tailwind helper presets
-- Visual-regression test harness (Playwright) for LTR vs RTL
+```mermaid
+flowchart TD
+    Client["Client / User Interface"] --> Core["Core Processing Engine"]
+    Core --> Ingestion["Data Ingestion & Adapters"]
+    Core --> Persistence["Storage / Cache Layer"]
+    Core --> Verification["Validation & Safety Layer"]
+```
 
-## Open bases to fork
-- [rtlcss](https://github.com/MohammadYounes/rtlcss) — Auto-converts LTR CSS to RTL — most widely used; core engine to build on.
-- [rtl-css-js](https://github.com/Andarist/rtl-css-js) — Same idea for CSS-in-JS.
-- [bootstrap-v4-rtl](https://github.com/MahdiMajidzadeh/bootstrap-v4-rtl) — Reference RTL framework port.
-- [rtlstyling.com](https://rtlstyling.com) — The best general RTL styling reference/guide.
+## Core Subsystems
+
+### 1. Ingestion & Preprocessing
+Handles raw input data, validates schema compliance, normalizes inputs, and eliminates malformed requests.
+
+### 2. Processing & Business Logic
+Executes the primary business logic and domain processing pipelines efficiently and deterministically.
+
+### 3. Verification & Safety Guards
+Enforces safety rules, sanitizes data structures, and validates output integrity before presentation.
+
+### 4. Storage & State Management
+Maintains persistent state, caches hot queries, and guarantees data durability.
