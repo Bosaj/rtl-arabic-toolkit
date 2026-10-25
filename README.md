@@ -3,7 +3,7 @@
 > A toolkit + audit CLI that finds and fixes the recurring right-to-left (Arabic) layout bugs in web apps.
 
 **Status:** pre-alpha scaffold (no code yet). **Feasibility rating:** 6/10 — real, ongoing pain for Arabic developers.
-**Author:** Oussama EL HADJI. Part of the Bosaj ideas portfolio (sibling repo: `dual_portfolio_hub`).
+**Author:** Oussama Elhadji (`@Bosaj`) <oussousselhadji@gmail.com>.
 
 ---
 
@@ -63,6 +63,7 @@ This repo is a **scaffold**: README + standard files, no implementation yet. If 
 # npm install && npm run dev   # once code lands
 ```
 
-## License
+## 📄 License
+**Proprietary & Commercial Software License** — All Rights Reserved © 2026 Oussama Elhadji (`@Bosaj`) <[oussousselhadji@gmail.com](mailto:oussousselhadji@gmail.com)>.
 
-[MIT](LICENSE) — © 2026 Oussama EL HADJI
+Unauthorized copying, distribution, resale, or reverse engineering is strictly prohibited. See [LICENSE](LICENSE) for full legal terms.
