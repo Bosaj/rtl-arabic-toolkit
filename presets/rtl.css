@@ -1,0 +1,48 @@
+/*
+ * RTL-safe defaults. Import once, after your reset.
+ *   @import 'rtl-arabic-toolkit/preset.css';
+ * Works with or without Tailwind. In Tailwind 4 the rtl: and ltr: variants are built in.
+ */
+
+/* Icons that point somewhere: add .mirror-rtl */
+.mirror-rtl:dir(rtl) {
+  transform: scaleX(-1);
+}
+
+/* Phone numbers, code, URLs, prices: left to right even inside Arabic, and isolated from it */
+.ltr-run {
+  /* rtl-ignore */
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* User-provided text: let each paragraph find its own direction */
+.auto-dir {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Arabic letters join, so letter-spacing breaks the words apart */
+:lang(ar),
+:lang(fa),
+:lang(ur) {
+  letter-spacing: normal;
+}
+
+/* Reserve the scrollbar, whichever side it lands on, so that switching direction doesn't move the page */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Form fields whose content is always left to right keep their label's alignment */
+input[type='email'],
+input[type='url'],
+input[type='tel'] {
+  /* rtl-ignore */
+  direction: ltr;
+}
+input[type='email']:dir(rtl),
+input[type='url']:dir(rtl),
+input[type='tel']:dir(rtl) {
+  text-align: end;
+}
