@@ -8,3 +8,6 @@ build/
 .DS_Store
 .vite/
 coverage/
+*.tsbuildinfo
+.claude/
+rtl-check/

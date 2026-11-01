@@ -1,0 +1,53 @@
+{
+  "name": "rtl-arabic-toolkit",
+  "version": "0.4.0",
+  "description": "Finds and fixes right-to-left layout bugs: an audit CLI, a logical-properties codemod, a runtime LTR/RTL mirror check, and React and CSS helpers.",
+  "author": "Oussama Elhadji <oussousselhadji@gmail.com>",
+  "license": "SEE LICENSE IN LICENSE",
+  "type": "module",
+  "bin": { "rtl-audit": "dist/cli.js" },
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+    "./bidi": { "types": "./dist/bidi.d.ts", "default": "./dist/bidi.js" },
+    "./react": { "types": "./dist/react.d.ts", "default": "./dist/react.js" },
+    "./check": { "types": "./dist/check.d.ts", "default": "./dist/check.js" },
+    "./preset.css": "./presets/rtl.css"
+  },
+  "files": ["dist", "presets"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "audit:self": "node dist/cli.js src presets"
+  },
+  "dependencies": {
+    "@babel/parser": "^8.0.10",
+    "magic-string": "^1.4.5",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0",
+    "postcss": "^8.5.32",
+    "postcss-scss": "^4.0.9"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.40",
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "playwright": { "optional": true },
+    "react": { "optional": true }
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.3",
+    "@types/node": "^26.6.5",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "jsdom": "^30.1.2",
+    "playwright": "1.64.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}
