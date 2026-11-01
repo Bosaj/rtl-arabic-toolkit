@@ -109,7 +109,8 @@ export async function checkPage(page: Page, url: string, { tolerance = 4, outDir
     const flagged: { box: Box; offBy: number; r: Box }[] = []
     ltr.boxes.forEach((l, i) => {
       const r = rtl.boxes[i]!
-      if (l.skip || r.skip || l.width >= ltr.client - 2) return
+      // A full-width element has no side to be on
+      if (l.skip || r.skip || l.width >= Math.min(ltr.client, ltr.scroll, ltr.viewport) - 2) return
       elements++
       // The scrollbar or its reserved gutter may or may not change sides, so either mirror line is fine.
       const offBy = Math.min(Math.abs(r.x - (rtl.client - (l.x + l.width))), Math.abs(r.x - (rtl.viewport - (l.x + l.width))), Math.abs(r.x + (rtl.viewport - rtl.client) - (rtl.viewport - (l.x + l.width))))
