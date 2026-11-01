@@ -112,8 +112,8 @@ export async function checkPage(page: Page, url: string, { tolerance = 4, outDir
       // A full-width element has no side to be on
       if (l.skip || r.skip || l.width >= Math.min(ltr.client, ltr.scroll, ltr.viewport) - 2) return
       elements++
-      // The scrollbar or its reserved gutter may or may not change sides, so either mirror line is fine.
-      const offBy = Math.min(Math.abs(r.x - (rtl.client - (l.x + l.width))), Math.abs(r.x - (rtl.viewport - (l.x + l.width))), Math.abs(r.x + (rtl.viewport - rtl.client) - (rtl.viewport - (l.x + l.width))))
+      // The scrollbar or its reserved gutter may or may not change sides, so any of these mirror lines is fine.
+      const offBy = Math.min(...[rtl.client, rtl.viewport, rtl.scroll].map((line) => Math.abs(r.x - (line - (l.x + l.width)))))
       // Text can wrap differently, so only a mismatch beyond the element's own width change counts.
       const resized = Math.abs(r.width - l.width)
       if (offBy > tolerance + resized) flagged.push({ box: l, offBy, r })

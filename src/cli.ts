@@ -62,7 +62,8 @@ if (positionals[0] === 'check') {
     console.log(`${result.url} at ${result.width}px: ${result.elements} elements compared, ${(result.pixelDiff * 100).toFixed(1)}% of pixels differ from the mirror image`)
     if (result.overflow.rtlOnly) console.log(`${LABEL.error}  the page scrolls sideways in RTL only (${result.overflow.rtl}px wide)`)
     for (const i of result.issues.slice(0, 40)) console.log(`${LABEL.warn}  ${i.selector} is ${i.offBy}px from its mirror position${i.text ? `  "${i.text}"` : ''}`)
-    if (!result.issues.length && !result.overflow.rtlOnly) console.log('No layout differences found.')
+    if (!result.elements) console.log('Nothing was compared: everything sits under an element with its own dir attribute, which this check skips.')
+    else if (!result.issues.length && !result.overflow.rtlOnly) console.log('No layout differences found.')
   }
   process.exit(result.issues.length || result.overflow.rtlOnly ? 1 : 0)
 }
